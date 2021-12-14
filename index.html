@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Ropa+Sans"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>UNNAMED</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="my-view"></div>
+    <div id="about" style="display: none">
+      <p class="paragraph">
+        Africa is the world’s second largest and second most populous continent.
+        With 54 countries, 2,000 distinct languages and 3,000 tribes, it is a
+        diverse continent.
+      </p>
+      <p class="paragraph">
+        How might we show, using the internet, the diversity, creativity and
+        growth of art from a continent that is 3x the size of the United States
+        and has the world’s largest youth population? How might we do so in a
+        way that acknowledges colonial history while recognizing the artists
+        painting its future?
+      </p>
+      <p class="paragraph">
+        With 99% of its artifacts having unnamed artists, the Open Access
+        Collection of the National Museum of African Art struggles to show the
+        diversity of the continent and its creativity.
+      </p>
+      <p class="paragraph">
+        By exploring what we might learn about these artists using their
+        nationalities and medium, this project shows the gaps in the collection.
+        It aims to help museums improve how their collection is managed, stored
+        and made available online. It will help them ensure they are truly
+        representative and respectful of the cultures they come from.
+      </p>
+      <p class="source">Sources: Scientific American, CS Monitor</p>
+    </div>
+    <div id="search-dialog" style="display: none">
+      <div class="input-wrapper"><input type="search" class="search-input" /></div>
+      <div class="artmap">
+        <ul class="arts">
+          <li>Archival materials</li>
+          <li>Books & Catalogs</li>
+          <li>Ceramics</li>
+          <li>Clippings</li>
+          <li>Cloth</li>
+          <li>Decorative arts</li>
+          <li>Figures</li>
+          <li>Jewelry</li>
+          <li>Looms & Sewing</li>
+          <li>Masks</li>
+          <li>Others</li>
+          <li>Paintings</li>
+          <li>Sculpture</li>
+          <li>Textile & Fiber</li>
+        </ul>
+        <ul class="countries">
+          <li>Algeria</li>
+          <li>Burkina Faso</li>
+          <li>Cameroon</li>
+          <li>Congo</li>
+          <li>Côte d'Ivoire</li>
+          <li>Democratic Republic of Congo</li>
+          <li>Egypt</li>
+          <li>Ethiopia</li>
+          <li>Gabon</li>
+          <li>Ghana</li>
+          <li>Guinea</li>
+          <li>Guinea-Bissau</li>
+          <li>Kenya</li>
+          <li>Mali</li>
+          <li>Morroco</li>
+          <li>Niger</li>
+          <li>Nigeria</li>
+          <li>Senegal</li>
+          <li>Sierra Leone</li>
+          <li>South Africa</li>
+          <li>Sudan</li>
+          <li>Uganda</li>
+        </ul>
+      </div>
+      <div class="cta-wrapper"><button class="cta">Explore</button></div>
+    </div>
+    <div class="hint" style="display: none">
+      <p>Angola is a Southern Africa country with a population of about 32 million people.</p>
+    
+      <p>It has 1 artifact from one unnamed artist.</p>
+      <button class="cta">Explore</button>
+    </div>
+    <figure class="figure" style="display: none">
+      <img src="img/tusk.png" class="image" />
+      <label class="caption">Tusk</label>
+    </figure>
+
+    <script src="./lib/jquery-3.2.1.min.js"></script>
+    <script src="./lib/jq-router.min.js"></script>
+    <script>
+      var routes = {},
+        defaultRoute = "home";
+
+      routes["home"] = {
+        url: "#/",
+        templateUrl: "templates/home.html",
+      };
+
+      routes["medium"] = {
+        url: "#/medium",
+        templateUrl: "templates/medium.html",
+      };
+
+      routes["nationality"] = {
+        url: "#/nationality",
+        templateUrl: "templates/nationality.html",
+      };
+
+      $.router.setData(routes).setDefault(defaultRoute);
+
+      $.when($.ready).then(function () {
+        $.router.run(".my-view", "home");
+      });
+
+      var about = false;
+      var search = false;
+
+      function showAbout() {
+        $("#about").toggle();
+        about = true;
+      }
+
+      function showSearch() {
+        $("#search-dialog").toggle();
+        search = true;
+      }
+
+      $(document).on("click", function (e) {
+        if (about && $(e.target).closest("#about").length === 0) {
+          $("#about").hide();
+          about = false;
+        }
+        if (search && $(e.target).closest(".icon").length === 0) {
+          $("#search-dialog").hide();
+          search = false;
+        }
+        
+        console.log(e.target);
+      });
+    </script>
+  </body>
+</html>

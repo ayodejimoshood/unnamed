@@ -1,0 +1,18 @@
+* {
+  background-color: #a61111;
+}
+.center {
+  padding: 10px 20px 0px 20px;
+  color: white;
+}
+.center p {
+  font-size: 25px;
+  text-align: justify;
+}
+
+#sd{
+  float: right;
+  size: 34px;
+  color: white;
+  padding-left: 10px;
+}
