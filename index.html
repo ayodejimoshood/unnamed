@@ -123,6 +123,40 @@
         templateUrl: "templates/nationality.html",
       };
 
+      // start
+      var tooltip = $('#tooltip');
+      var map = $('#us-map');
+      var state = $('#us-map g');
+
+      state.each( function(){
+        
+        $(this).on('mouseenter', function(){
+
+          var name = $(this).attr('id');
+          name = name.replace(/_/g, ' ');
+          
+          tooltip.html(`${name}`).show();
+
+        }).on('mouseleave', function(){
+            tooltip.css({ 'left': 0, 'top': 0 }).hide();
+        });
+        
+      
+        
+      });
+
+      tooltip.hide();
+
+      $(document).on('mousemove', function(e){
+        
+        tooltip.css({
+          left:  e.pageX + 5,
+          top:   e.pageY + 5
+        });
+        
+      });
+      // end
+      
       $.router.setData(routes).setDefault(defaultRoute);
 
       $.when($.ready).then(function () {
